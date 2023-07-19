@@ -49,7 +49,7 @@ function circlesColor(earthquakeData) {
   var color = 'white'
 
   return  depth > 90 ? 'purple' :
-          depth > 70 ? 'pink' :
+          depth > 70 ? 'yellow' : //was pink
           depth > 50 ? 'orange' :
           depth > 30 ? 'blue' :
           depth > 10 ? 'green':
@@ -61,7 +61,7 @@ function circlesColor(earthquakeData) {
 function circlesColorLegend(depth) {
 
   return  depth > 90 ? 'purple' : 
-  depth > 70 ? 'pink' : 
+  depth > 70 ? 'yellow' : // was pink
   depth > 50 ? 'orange' :
   depth > 30 ? 'blue' :
   depth > 10 ? 'green':
@@ -70,23 +70,24 @@ function circlesColorLegend(depth) {
 
 
 
-/*function createLegend(map) {
+function createLegend(map) {
   var legend = L.control({position: 'bottomright'});
-  var labels = []
+  //var labels = []
 
   legend.onAdd = function (map) {
     
-    var div = L.DomUtil.create('div', 'info legend');  //was comma
+    var div = L.DomUtil.create('div', 'info legend'),  //was comma
    
-        depths2 = [0,10,30,50,70,90]; // was comma
-        labels = [];
+        depths2 = [-10,10,30,50,70,90]; // was comma
+
+        //div.innerHTML += "<h3 style='text-align: center'>Depth</h3>"
 
         console.log(div)
     // loop through our density intervals and generate a label with a colored square for each interval
     for (var i = 0; i < depths2.length ; i++) {
         div.innerHTML +=
             
-            '<i style="background:' + `${circlesColorLegend(depths2[i] + 1)}"` + '></i> ' +
+            '<li style="background:' + circlesColorLegend(depths2[i] + 1) + '"></li> ' +
             depths2[i] + (depths2[i + 1] ? '&ndash;' + depths2[i + 1] + '<br>' : '+');
     }
 
@@ -94,10 +95,10 @@ function circlesColorLegend(depth) {
   
   }
   legend.addTo(map);
-};*/
+};
 
 // modified solution
-function createLegend(map) {
+/*function createLegend(map) {
   const legend = L.control({position: 'bottomright'});
 
 	legend.onAdd = function (map) {
@@ -120,7 +121,7 @@ function createLegend(map) {
 
 	legend.addTo(map);
 
-};
+};*/
 
 
 
@@ -130,8 +131,7 @@ function createFeatures(earthquakeData) {
     // Give each feature a popup that describes the place and time of the earthquake.
     function onEachFeature(feature, layer) {
       layer.bindPopup(`<h3>${feature.properties.place}</h3><hr><p>${new Date(feature.properties.time)}</p><p>Magnitude: ${feature.properties.mag}<p/><p>Depth: ${feature.geometry.coordinates[2]} km<p/>`);
-      
-      //L.circle([feature.geometry.coordinates[1], feature.geometry.coordinates[0]],{
+
     }
 
 
@@ -143,7 +143,7 @@ function createFeatures(earthquakeData) {
         var circleMarkers = {
           radius: magCircles(feature),
           fillColor: circlesColor(feature),
-          fillOpacity: 0.4,
+          fillOpacity: 0.5,
           color: ''
           
         }
