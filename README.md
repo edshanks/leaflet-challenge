@@ -3,3 +3,4 @@ This webpage displays all earthquakes with a magnitude of 2.5 or higher that hav
 
 To open the webpage, open "index.html" in the main repository. To access the javascript code, navigate to the folder titles "static", then to the folder titled "js", and then open "logic.js". A file named "choropleth.js" can also be found in this directory. This file is for formatting involved in creating the map's legend. To access the CSS code, navigate to the folder titles "static", then to the folder titled "css", and then open "style.css".
 
+While workign on this project, I received help from my instructor, Tom. He helped with the section of code which creates the earthquake markers. I also relied heavily on the Leaflet cloropleth documentation while creating the function which renders the map's legend (https://leafletjs.com/examples/choropleth/).
